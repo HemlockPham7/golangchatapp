@@ -31,6 +31,7 @@ func (s *service) CreateUser(c context.Context, req *CreateUserReq) (*CreateUser
 
 	hashedPassword, err := util.HashPassword(req.Password)
 	if err != nil {
+		// log.Fatal("hash-error")
 		return nil, err
 	}
 
@@ -42,6 +43,7 @@ func (s *service) CreateUser(c context.Context, req *CreateUserReq) (*CreateUser
 
 	r, err := s.Repository.CreateUser(ctx, u)
 	if err != nil {
+		// log.Fatal("create-error")
 		return nil, err
 	}
 

@@ -5,7 +5,6 @@ import (
 
 	"github.com/HemlockPham7/server/db"
 	"github.com/HemlockPham7/server/internal/user"
-	"github.com/HemlockPham7/server/internal/ws"
 	"github.com/HemlockPham7/server/router"
 )
 
@@ -19,10 +18,6 @@ func main() {
 	userSvc := user.NewService(userRep)
 	userHandler := user.NewHandler(userSvc)
 
-	hub := ws.NewHub()
-	wsHandler := ws.NewHandler(hub)
-	go hub.Run()
-
-	router.InitRouter(userHandler, wsHandler)
+	router.InitRouter(userHandler)
 	router.Start("0.0.0.0:8080")
 }
